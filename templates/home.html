@@ -1,0 +1,55 @@
+{% extends "base.html" %} 
+{% load crispy_forms_tags %} 
+{% block head_title %}Bienvenidos {% endblock %} 
+
+{% block style %}
+  <style>
+  
+  .jumbotron {
+    background-color: #3333338f !important;
+  }
+
+  </style>
+{% endblock %}
+
+
+{% block jumbotron %}
+
+<!-- Main component for a primary marketing message or call to action -->
+
+<div class="jumbotron">
+<div class="row">
+  <div class="col-sm-6">
+    <h1 class="tex-aligt-center">  </h1>
+    <p></p>
+    <p></p>
+    <p>
+      <a
+        class="btn btn-lg btn-primary"
+        href="https://www.youtube.com/watch?v=aMWreemWc70"
+        role="button"
+        >EDIFICAS GP &raquo;</a
+      >
+    </p>
+  </div>
+  <div class="col-sm-6" style="background-color: black; height:200px ;"></div>
+</div>
+</div>
+{% endblock %} 
+{{ el_form }}<br />
+{{ request.user }}<br />
+
+{% block content %}
+{% if not request.user.is_staff %}
+<div class="row">
+  <div class="col-sm-3 pull-rigth">
+    <p class="tex-aligt-center">{{ el_titulo }}</p>
+    {% if not user.is_authenticated %}
+    <form method="POST" action="">{% csrf_token %} 
+      {{ el_form|crispy }}
+    </form>
+    {% endif %}
+<hr />
+
+{% endif %}
+{% endblock %}
